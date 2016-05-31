@@ -1,6 +1,11 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * The main template file.
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -16,7 +21,7 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <div class="hero hero-major-padding" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($blog_id) ); ?>');">
+                <div class="hero hero-style-a hero-major-padding" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($blog_id) ); ?>');">
                     <div class="container">
                         <div class="col-md-10 col-md-offset-1">
                             <h1><?php echo get_the_title($blog_id); ?></h1>
@@ -25,17 +30,20 @@ get_header(); ?>
 
                                     $categories = get_categories();
                                     $count = count($categories) + 1;
-                                    
-                                    if( is_home() ) {
-                                        $view_all = ' current-category';
-                                    }
                                 
                                     $col_width = 12 / $count;
-                                    echo '<div class="col-md-'. $col_width .'"><a class="category-button'. $view_all .'" href="'. get_permalink($blog_id) .'">View All</a></div>';
+                                    echo '<div class="col-md-'. $col_width .'"><a class="category-button" href="'. get_permalink($blog_id) .'">View All</a></div>';
                                 
                                     if ( ! empty( $categories ) ) {
                                         foreach ( $categories as $category ) {
-                                            echo '<div class="col-md-'. $col_width .'"><a class="category-button" href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></div>';
+                                            
+                                            $current = '';
+                                            if( is_category( $category->slug ) ) {
+                                                $current = ' current-category';
+                                                
+                                            }
+                                            
+                                            echo '<div class="col-md-'. $col_width .'"><a class="category-button'. $current .'" href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></div>';
                                         }
                                     }
 
@@ -44,7 +52,7 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
-                </div><!-- .hero -->    
+                </div><!-- .hero -->   
                 <div class="blog-posts">
                     <div class="container">
                         <div class="row blog-posts-container">

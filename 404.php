@@ -7,56 +7,38 @@
  * @package jist
  */
 
+$blog_id = get_option( 'page_for_posts' );
+global $post;
+$post_slug = $post->post_name;
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+            <article <?php post_class(); ?>>
+                <div class="hero hero-style-a hero-major-padding" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($blog_id) ); ?>');">
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h1>Page not found</h1>
+                        </div>
+                    </div>
+                </div><!-- .hero --> 
+                <div class="blog-posts">
+                    <div class="container">
+                        <div class="row blog-posts-container search-empty">
+                            <h3>Sorry, we can't find that page.</h3>
+                            <p>Please try searching our site, or <a href="<?php echo get_permalink( get_option('page_for_posts' ) ); ?>">check out what's new on our blog</a>.</p>
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'jist' ); ?></h1>
-				</header><!-- .page-header -->
-
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'jist' ); ?></p>
-
-					<?php
-						get_search_form();
-
-						the_widget( 'WP_Widget_Recent_Posts' );
-
-						// Only show the widget if site has multiple categories.
-						if ( jist_categorized_blog() ) :
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'jist' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-						endif;
-
-						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'jist' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-						the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
+                            <form action="/" method="get">
+                                <label class="screen-reader-text" for="search">Search in <?php echo home_url( '/' ); ?></label>
+                                <input type="text" class="search-field" name="s" placeholder="Search" id="search" value="<?php the_search_query(); ?>" autocomplete="off" />
+                            </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            </article>
+            <?php get_template_part( 'template-parts/content', 'signup' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

@@ -1,7 +1,7 @@
 <div id="blog-roll" class="blog-roll">
 	<div class="blog-carousel">
 	    <?php
-		$args = array( 'posts_per_page' => 3 );
+		$args = array( 'posts_per_page' => 9 );
 
 		$myposts = get_posts( $args );
 		foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -18,7 +18,7 @@
 		            
 			    	<div class="clearfix"></div>
 			    
-					<a class="more" href="<?php the_permalink(); ?>">Learn More...</a>
+					<a class="more" href="<?php the_permalink(); ?>">Learn more...</a>
 					
 					<div class="clearfix"></div>
 				</div>

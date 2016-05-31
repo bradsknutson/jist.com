@@ -42,14 +42,14 @@ $category_class = trim($cat_class);
 
 <?php // Display Posts in search results ?>
 <?php if ( get_post_type() === 'post' ) { ?>
-    <div class="blog-archive-container search-v2 <?php echo $category_class; ?>">
+    <div class="blog-archive-container col-md-4 <?php echo $category_class; ?>">
         <div class="products-background">
             <?php 
                 echo '<p class="entry-meta">'. esc_html( $cat_name ) .' | ';
                 the_time('n.j.Y'); 
                 echo '</p>';
                 echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
-                echo '<p>'. postTruncate( $content, 255 ) .'... Read more &rarr;</p>'; 
+                echo '<p>'. postTruncate( $content, 255 ) .'...</p>'; 
 
             ?>
         </div>
@@ -60,36 +60,30 @@ $category_class = trim($cat_class);
 <?php // Display Pages in search results ?>
 <?php if ( get_post_type() === 'page' ) { 
     
-    // First determine if page belongs in search index
-    if( get_field('search_index') != 'no' ) {     
-    
-        if( $post->post_parent == 441 ) {
-        ?>
-            <div class="blog-archive-container search-v2 search-infographic">
-                <div class="products-background">
-                    <?php 
-                        echo '<p class="entry-meta">Infographic</p>';
-                        echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
-                        echo '<p>Click to see the infographic.</p>'; 
+    if( $post->post_parent == 441 ) {
+    ?>
+        <div class="blog-archive-container col-md-4 search-infographic">
+            <div class="products-background">
+                <?php 
+                    echo '<p class="entry-meta">Infographic</p>';
+                    echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
+                    echo '<p>Click to see the infographic.</p>'; 
 
-                    ?>
-                </div>
-                <a href="<?php the_permalink(); ?>"></a>
+                ?>
             </div>
-        <?php } else { ?>
-            <div class="blog-archive-container search-v2 search-page">
-                <div class="products-background">
-                    <?php 
-                        echo '<p class="entry-meta">Information</p>';
-                        echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
-                        echo '<p>'. postTruncate( $content, 255 ) .'... Read more &rarr;</p>'; 
+            <a href="<?php the_permalink(); ?>"></a>
+        </div>
+    <?php } else { ?>
+        <div class="blog-archive-container col-md-4 search-page">
+            <div class="products-background">
+                <?php 
+                    echo '<p class="entry-meta">Information</p>';
+                    echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
+                    echo '<p>'. postTruncate( $content, 255 ) .'...</p>'; 
 
-                    ?>
-                </div>
-                <a href="<?php the_permalink(); ?>"></a>
+                ?>
             </div>
-        <?php } ?>
-
+            <a href="<?php the_permalink(); ?>"></a>
+        </div>
     <?php } ?>
-
 <?php } ?>

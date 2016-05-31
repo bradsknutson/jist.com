@@ -1,12 +1,12 @@
 <?php
-if ( get_field( 'new_releases' ) ) {
+if ( get_field( 'new_releases', 92 ) ) {
 	?>
 	<div class="new-releases">
-		<h2>New Releases</h2>
+		<h2>New releases</h2>
 		<div class="new-carousel">
-        	<?php if( have_rows('new_releases') ): ?>
+        	<?php if( have_rows('new_releases', 92) ): ?>
 
-				<?php while( have_rows('new_releases') ): the_row(); 
+				<?php while( have_rows('new_releases', 92) ): the_row(); 
 
 					// vars
 					$link = get_sub_field('link');
@@ -23,7 +23,7 @@ if ( get_field( 'new_releases' ) ) {
 					?>
 		        	
 		        	<div>
-			            <a href="<?php echo $row['link']; ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></a>
+			            <a href="<?php echo $link; ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"></a>
 					</div>
 					
 				<?php endwhile; ?>

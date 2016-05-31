@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying page content in page.php.
+ * Template part for displaying Shop Online page content.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -25,6 +25,12 @@
                 <div class="page-content">
                     <div class="body-full-width-content">
                         <?php the_content(); ?>
+                        <?php if( get_field('form_id') ) {
+                            $id = get_field('form_id');
+                            if( function_exists( 'ninja_forms_display_form' ) ) { 
+                                ninja_forms_display_form( $id ); 
+                            }    
+                        } ?>
                     </div>
                 </div>
             </div>

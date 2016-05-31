@@ -31,11 +31,21 @@
 						<h5>Connect with us</h5>
 						<h4>800-328-1452</h4>
 						<div class="social">
-							<a href="#" class="icon icon-facebook"></a>
-							<a href="#" class="icon icon-twitter"></a>
-							<a href="#" class="icon icon-linkedin"></a>
-							<a href="#" class="icon icon-youtube"></a>
-							<a href="#" class="icon icon-pinterest"></a>
+                            <?php if( get_field('facebook_link', 92) ): ?>
+				                <a href="<?php the_field('facebook_link', 92); ?>" target="_blank" class="icon icon-facebook"></a>
+                            <?php endif; ?>
+                            <?php if( get_field('twitter_link', 92) ): ?>
+				                <a href="<?php the_field('twitter_link', 92); ?>" target="_blank" class="icon icon-twitter"></a>
+                            <?php endif; ?>
+                            <?php if( get_field('linkedin_link', 92) ): ?>
+				                <a href="<?php the_field('linkedin_link', 92); ?>" target="_blank" class="icon icon-linkedin"></a>
+                            <?php endif; ?>
+                            <?php if( get_field('youtube_link', 92) ): ?>
+				                <a href="<?php the_field('youtube_link', 92); ?>" target="_blank" class="icon icon-youtube"></a>
+                            <?php endif; ?>
+                            <?php if( get_field('pinterest_link', 92) ): ?>
+				                <a href="<?php the_field('pinterest_link', 92); ?>" target="_blank" class="icon icon-pinterest"></a>
+                            <?php endif; ?>
 						</div>
 					</div>
 				</div>

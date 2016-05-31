@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Home
+ * Template Name: Contact
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -15,9 +15,7 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) : the_post();
 
-				get_template_part( 'template-parts/content', 'page-home' );
-				get_template_part( 'template-parts/content', 'new-releases' );
-				get_template_part( 'template-parts/content', 'blog-roll' );
+				get_template_part( 'template-parts/content', 'page-contact' );
 				get_template_part( 'template-parts/content', 'signup' );
 
 			endwhile; // End of the loop.

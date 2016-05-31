@@ -12,45 +12,71 @@
  * @package jist
  */
 
+$blog_id = get_option( 'page_for_posts' );
+global $post;
+$post_slug = $post->post_name;
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <div class="hero hero-major-padding" style="background-image:url('<?php echo wp_get_attachment_url( get_post_thumbnail_id($blog_id) ); ?>');">
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h1><?php echo get_the_title($blog_id); ?></h1>
+                            <div class="blog-categories">
+                                <?php
 
-		<?php
-		if ( have_posts() ) :
+                                    $categories = get_categories();
+                                    $count = count($categories) + 1;
+                                    
+                                    if( is_home() ) {
+                                        $view_all = ' current-category';
+                                    }
+                                
+                                    $col_width = 12 / $count;
+                                    echo '<div class="col-md-'. $col_width .'"><a class="category-button'. $view_all .'" href="'. get_permalink($blog_id) .'">View All</a></div>';
+                                
+                                    if ( ! empty( $categories ) ) {
+                                        foreach ( $categories as $category ) {
+                                            echo '<div class="col-md-'. $col_width .'"><a class="category-button" href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></div>';
+                                        }
+                                    }
 
-			if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
 
-			<?php
-			endif;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- .hero -->    
+                <div class="blog-posts">
+                    <div class="container">
+                        <div class="row blog-posts-container">
+                            <?php
+                            while ( have_posts() ) : the_post();
 
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+                                get_template_part( 'template-parts/content', 'page-blog' );
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+                            endwhile; // End of the loop.
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="blog-navigation">
+                <div class="container">
+                    <?php the_posts_pagination( array( 'mid_size' => -1 ) ); ?>
+                </div>
+            </div>
+            <?php
 
-			endwhile;
+            get_template_part( 'template-parts/content', 'signup' );
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
+            ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
