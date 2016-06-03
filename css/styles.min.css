@@ -2238,6 +2238,9 @@ footer .copyright {
     .search-close:hover:after {
         opacity: 0.75;
     }
+    .body-full-width-content {
+        padding: 20px;
+    }    
 }
 
 @media screen and ( min-width: 992px ) and ( max-width: 1199px ) {
