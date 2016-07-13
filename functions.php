@@ -142,15 +142,6 @@ function jist_widgets_init() {
 		'after_title'   => '',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Job Search Menu', 'jist' ),
-		'id'            => 'job-search-menu',
-		'description'   => '',
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '',
-		'after_title'   => '',
-	) );
-	register_sidebar( array(
 		'name'          => esc_html__( 'College Prep Menu', 'jist' ),
 		'id'            => 'college-prep-menu',
 		'description'   => '',
