@@ -7,27 +7,23 @@
  * @package jist
  */
 
-function postTruncate($string, $your_desired_width) {
+$content = get_the_content();
     
-    $string = strip_tags( $string );
-    $string = preg_replace('/\[[^\]]*\]/', '', $string);
+    $content = strip_tags( $content );
+    $content = preg_replace('/\[[^\]]*\]/', '', $content);
     
-    $parts = preg_split('/([\s\n\r]+)/', $string, null, PREG_SPLIT_DELIM_CAPTURE);
+    $parts = preg_split('/([\s\n\r]+)/', $content, null, PREG_SPLIT_DELIM_CAPTURE);
     $parts_count = count($parts);
 
     $length = 0;
     $last_part = 0;
     for (; $last_part < $parts_count; ++$last_part) {
         $length += strlen($parts[$last_part]);
-        if ($length > $your_desired_width) { break; }
+        if ($length > 100) { break; }
     }
     
-    $return = implode( array_slice( $parts, 0, $last_part) );
+    $final_content = implode( array_slice( $parts, 0, $last_part) );
     
-    return trim($return);
-}        
-
-$content = get_the_content();
 
 $cat_class = '';
 $cat_name = '';
@@ -49,7 +45,7 @@ $category_class = trim($cat_class);
                 the_time('n.j.Y'); 
                 echo '</p>';
                 echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
-                echo '<p>'. postTruncate( $content, 255 ) .'... Read more &rarr;</p>'; 
+                echo '<p>'. trim( $final_content ) .'... Read more &rarr;</p>'; 
 
             ?>
         </div>
@@ -82,7 +78,7 @@ $category_class = trim($cat_class);
                     <?php 
                         echo '<p class="entry-meta">Information</p>';
                         echo '<h4 class="posts-page-item-title">'. get_the_title() .'</h4>';
-                        echo '<p>'. postTruncate( $content, 255 ) .'... Read more &rarr;</p>'; 
+                        echo '<p>'. trim( $final_content ) .'... Read more &rarr;</p>'; 
 
                     ?>
                 </div>
