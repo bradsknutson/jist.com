@@ -135,6 +135,13 @@
         window.open( $store + $.param($params), '_blank');
 
         e.preventDefault();
-    });   
+    });      
+    
+    // IE Fix
+    $(document).on('keypress', '.page-template-page-shop-online .page-content form', function(event){
+         if(event.keyCode == 13){
+             $('.page-template-page-shop-online .page-content form').submit();
+         }
+     });
     
 })( jQuery );
