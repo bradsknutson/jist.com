@@ -835,6 +835,7 @@ input[type="submit"] {
 .hero.hero-major-padding {
     padding: 100px 15px 300px;
 }
+.page-template-page-slider .hero h1, 
 .page-template-page-why-jist .hero h1, 
 .page-template-page-why-jist .hero p,
 .page-template-page-about .hero h1, 
@@ -2357,4 +2358,75 @@ footer .copyright {
     .why-jist-page .col-md-6.why-jist-content {
         padding: 60px 60px 0;
     }    
+}
+
+/* Add Slider */
+/* 
+ * 	Hero + Alternating Content
+ */
+
+.page-template-page-slider .hero .container {
+    padding: 100px 0;
+}
+.page-template-page-slider .hero .container p {
+    font-size: 1.5em;
+}
+.page-template-page-slider .alternating-content-images {
+    padding: 40px 0;
+    background: #f4f4f4;
+}
+.alternating-content-images .container {
+    padding: 20px 40px;
+    background: #FFF;
+}
+.alternating-content-images .alternating-image,  
+.alternating-content-images .alternating-content {
+    margin: 0;
+    padding: 0;
+}
+.alternating-content-images .alternating-content > div {
+    margin: 0;
+    padding: 0 40px;
+}
+.alternating-content-images .alternating-image img {
+    width: 100%;
+}
+.row-hidden {
+    height: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    -webkit-transition: 0.3s all ease-out;
+    -moz-transition: 0.3s all ease-out;
+    -ms-transition: 0.3s all ease-out;
+    
+}
+.row {
+	margin-bottom:15px;
+}
+.button-slide {
+    cursor: pointer;
+    position: relative;
+}
+.button-slide i {
+    position: absolute;
+    left: 10px;
+    top: 11px;
+    opacity: 0.75;
+}
+.button {
+    display: inline-block;
+    margin: 0 25px 15px 0;
+    -webkit-transition: .3s all ease;
+    -moz-transition: .3s all ease;
+    -ms-transition: .3s all ease;
+    transition: .3s all ease;
+}
+.button:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+.button div {
+    padding: 5px 25px !important;    
 }
