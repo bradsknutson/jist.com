@@ -10,6 +10,7 @@
  */
 
 ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <div class="hero" style="background-image:url('<?php the_post_thumbnail_url() ?>');">
 		<div class="container">
 			<div class="row">
@@ -119,4 +120,5 @@
             ?>
 
         </div>
-</div>
+	</div>
+</article><!-- #post-## -->
